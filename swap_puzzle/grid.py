@@ -83,58 +83,58 @@ class Grid():
         else :
             print("swap seems impossible")
         return()
-        ######################
+        ###################### 
     def swap_droite(self,a,b,k):
-        swap_seq(get_swap_droite(a,b,k))
+        self.swap_seq(self.get_swap_droite(a,b,k))
         return()
     
     def get_swap_droite(self,a,b,k):
         l=[]
         for i in range (k):
-            l+=[((a,b+k),(a,b+k+1))]
+            l+=[((a,b+k-1),(a,b+k))]
         return(l)
     
     def swap_gauche(self,a,b,k):
-        swap_seq(get_swap_gauche(a,b,k))
+        self.swap_seq(self.get_swap_gauche(a,b,k))
         return()
     
     def get_swap_gauche(self,a,b,k):
         l=[]
         for i in range (k):
-            l+=[((a,b+k),(a,b+k-1))]
+            l+=[((a,b+k-1),(a,b+k-2))]
         return(l)
     
     def swap_haut(self,a,b,k):
-        swap_seq(get_swap_haut(a,b,k))
+        self.swap_seq(self.get_swap_haut(a,b,k))
         return()
     
     def get_swap_haut(self,a,b,k):
         l=[]
         for i in range (k):
-            l+=[((a+k,b),(a+k-1,b))]
+            l+=[((a+k-1,b),(a+k-2,b))]
         return(l)
     
     def swap_bas(self,a,b,k):
-        swap_seq(get_swap_bas(a,b,k))
+        self.swap_seq(self.get_swap_bas(a,b,k))
         return()
     
     def get_swap_bas(self,a,b,k):
         l=[]
         for i in range (k):
-            l+=[((a+k,b),(a+k+1,b))]
+            l+=[((a+k-1,b),(a+k,b))]
         return(l)
     
-    def find(self,i):
+    def find(self,p):
         a=0
         b=0
-        while self.state[a][b] != i:
-            if b<m:
+        while self.state[a][b] != p:
+            if b<self.m:
                 b+=1
             else :
                 b=0
                 a+=1
-            if a>n:
-                return(str(i),"not found in the grid")
+            if a>self.n:
+                return(str(p),"not found in the grid")
         return(a,b)
 
     #########################
