@@ -1,5 +1,5 @@
 from grid import Grid
-
+from solver import Solver
 g = Grid(2, 3)
 print(g)
 
@@ -10,3 +10,4 @@ print(file_name)
 
 g = Grid.grid_from_file(file_name)
 print(g)
+

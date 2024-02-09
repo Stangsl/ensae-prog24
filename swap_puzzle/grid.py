@@ -1,7 +1,7 @@
 """
 This is the grid module. It contains the Grid class and its associated methods.
 """
-
+#TO DO : commande find , commandes swap haut , droite ...
 import random
 
 class Grid():
@@ -83,7 +83,61 @@ class Grid():
         else :
             print("swap seems impossible")
         return()
+        ######################
+    def swap_droite(self,a,b,k):
+        swap_seq(get_swap_droite(a,b,k))
+        return()
+    
+    def get_swap_droite(self,a,b,k):
+        l=[]
+        for i in range (k):
+            l+=[((a,b+k),(a,b+k+1))]
+        return(l)
+    
+    def swap_gauche(self,a,b,k):
+        swap_seq(get_swap_gauche(a,b,k))
+        return()
+    
+    def get_swap_gauche(self,a,b,k):
+        l=[]
+        for i in range (k):
+            l+=[((a,b+k),(a,b+k-1))]
+        return(l)
+    
+    def swap_haut(self,a,b,k):
+        swap_seq(get_swap_haut(a,b,k))
+        return()
+    
+    def get_swap_haut(self,a,b,k):
+        l=[]
+        for i in range (k):
+            l+=[((a+k,b),(a+k-1,b))]
+        return(l)
+    
+    def swap_bas(self,a,b,k):
+        swap_seq(get_swap_bas(a,b,k))
+        return()
+    
+    def get_swap_bas(self,a,b,k):
+        l=[]
+        for i in range (k):
+            l+=[((a+k,b),(a+k+1,b))]
+        return(l)
+    
+    def find(self,i):
+        a=0
+        b=0
+        while self.state[a][b] != i:
+            if b<m:
+                b+=1
+            else :
+                b=0
+                a+=1
+            if a>n:
+                return(str(i),"not found in the grid")
+        return(a,b)
 
+    #########################
     def swap_seq(self, cell_pair_list):
         for k in range(len(cell_pair_list)):
             self.swap(cell_pair_list[k][0],cell_pair_list[k][1])
