@@ -62,10 +62,9 @@ class Grid():
         return()
 
         """
-        Checks is the current state of the grid is sorte and returns the answer as a boolean.
+        Checks is the current state of the grid is sorte and returns the answer as a boolean by comparing "self.state" to the grid sorted , created by a nested loop (descending columns and then descending rows)
+
         """
-        # TODO: implement this function (and remove the line "raise NotImplementedError").
-        #raise NotImplementedError
 
     def swap(self, cell1, cell2):
         """
@@ -81,9 +80,9 @@ class Grid():
         if (abs(i-a)<2 and abs(j-b<2)):
             self.state[i][j],self.state[a][b]=self.state[a][b],self.state[i][j]
         else :
-            print("swap seems impossible")
+            print("this swap is not possible")
         return()
-        ###################### 
+        ######################We chose to implement methods that : find an int ("i" in [1;n*m]) in the grid , return several swaps to a same direction , we also made "get" methods that return the sequences of these "several swaps to a same direction". 
     def swap_droite(self,a,b,k):
         self.swap_seq(self.get_swap_droite(a,b,k))
         return()
