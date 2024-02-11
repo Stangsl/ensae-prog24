@@ -9,20 +9,19 @@ class Solver():
     def get_solution(grid):
         L=[]
         for i in range (grid.n*grid.m):
-            a,b=grid.find(i)
-            if i%grid.m==0: #cas particulier si "i" doit aller tout à droite
-                L+=grid.get_swap_droite(a,b,grid.m-b) #faire self.m-b swap à droite
+            a, b=grid.find(i)
+            if i%grid.m==0: #particular case if "i" needs to go all to the right
+                L+=grid.get_swap_droite(a,b,grid.m-b) #perform self.m-b swap to the right
             if i%grid.m<b:   
-                L+=grid.get_swap_gauche(a,b,b-(i%grid.m)) #faire position moins reste swaps à gauche
+                L+=grid.get_swap_gauche(a,b,b-(i%grid.m)) #perform "position" - "rest" swaps to the left
             if i%grid.m>b:
-                L+=grid.get_swap_droite(a,b,i%grid.m-b) #faire reste moins positions swaps à droite
+                L+=grid.get_swap_droite(a,b,i%grid.m-b) #perform "rest" - "position" swaps to the right
             if i//grid.n+1<a:
-                L+=grid.get_swap_haut(a,b,a-(i//grid.n+1)) #faire position moins quotient swaps en haut
+                L+=grid.get_swap_haut(a,b,a-(i//grid.n+1)) #perform "position" - "i//grid.n+1" swaps to the top to achieve "i"'s positioning
         return(L)
             
                       
         """
-        Solves the grid (by using swap_seq with the sequence "L") and returns the sequence of swaps at the format 
-        [((i1, j1), (i2, j2)), ((i1', j1'), (i2', j2')), ...]. 
+        This method solves the grid (by using swap_seq to the sequence "L") and returns the sequence of swaps at the format 
+        [((i1, j1), (i2, j2)), ((i1', j1'), (i2', j2')), ...].
         """
-
