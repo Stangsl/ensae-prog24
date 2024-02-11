@@ -82,7 +82,9 @@ class Grid():
         else :
             print("this swap is not possible")
         return()
-        ######################We chose to implement methods that : find an int ("i" in [1;n*m]) in the grid , return several swaps to a same direction , we also made "get" methods that return the sequences of these "several swaps to a same direction". 
+    ######################We chose to implement methods that : find an int ("i" in [1;n*m]) in the grid , return several swaps to a same direction , we also made "get" methods that return the sequences of these "several swaps to a same direction". 
+
+    
     def swap_droite(self,a,b,k):
         self.swap_seq(self.get_swap_droite(a,b,k))
         return()
@@ -150,7 +152,17 @@ class Grid():
             List of swaps, each swap being a tuple of two cells (each cell being a tuple of integers). 
             So the format should be [((i1, j1), (i2, j2)), ((i1', j1'), (i2', j2')), ...].
         """
-
+    #########################Q4 , graphic representation of grids using numpy and matplotlib
+    import matplotlib.pyplot as plt    
+    def grid_show(self):
+        for i in range(self.n):
+            for j in range(self.m):
+                ax.text(j, i, str(slef.state[i][j]), ha='center', va='center', color='black', fontsize=12)
+    # Add numbers to each cell
+        ax.axis('off')
+    # Hide axes
+        plt.show()
+    #########################
     @classmethod
     def grid_from_file(cls, file_name): 
         """
