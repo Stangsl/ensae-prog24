@@ -157,7 +157,7 @@ class Grid():
     def grid_show(self):
         for i in range(self.n):
             for j in range(self.m):
-                ax.text(j, i, str(slef.state[i][j]), ha='center', va='center', color='black', fontsize=12)
+                ax.text(j, i, str(self.state[i][j]), ha='center', va='center', color='black', fontsize=12)
     # Add numbers to each cell
         ax.axis('off')
     # Hide axes
