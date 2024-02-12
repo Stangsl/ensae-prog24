@@ -163,6 +163,26 @@ class Grid():
     # Hide axes
         plt.show()
     #########################
+    #########################Q6 grids -> nodes
+    def get_nodes(self):
+        nodes = []
+        for i in range(self.n):
+            for j in range(self.m):
+                nodes += [self.state[i][j]]
+        return nodes
+     #Returns a list of ints containing all nodes corresponding to all cells of the grid.
+        
+    def get_neighbors(self, node):
+       neighbors = []
+        row, col = self.find(node)
+        directions = [(0, 1), (0, -1), (-1, 0), (1, 0)]  # Possible directions: right, left, up, down.
+        for a,b in directions:
+            new_row,new_col = row + a,col + b
+            if 0 <= new_row < self.n and 0 <= new_col < self.m: #Makes sure assumed neighbor exists in the grid.
+                neighbors.append(self.state[new_row][new_col])
+        return neighbors
+    #returns a list that corresponds to every neighbor of the node entered (node entered as an int and neighbors are , for the moment , returned as list of nodes as ints --> into dico? ).
+    #########################
     @classmethod
     def grid_from_file(cls, file_name): 
         """
