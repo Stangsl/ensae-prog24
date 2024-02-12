@@ -162,6 +162,7 @@ class Grid():
         ax.axis('off')
     # Hide axes
         plt.show()
+        return()
     #########################
     #########################Q6 grids -> nodes
     def get_nodes(self):
