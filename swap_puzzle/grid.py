@@ -173,7 +173,7 @@ class Grid():
      #Returns a list of ints containing all nodes corresponding to all cells of the grid.
         
     def get_neighbors(self, node):
-       neighbors = []
+        neighbors = []
         row, col = self.find(node)
         directions = [(0, 1), (0, -1), (-1, 0), (1, 0)]  # Possible directions: right, left, up, down.
         for a,b in directions:
