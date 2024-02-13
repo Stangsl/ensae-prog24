@@ -59,10 +59,10 @@ class Grid():
             print("the grid is sorted")
         else :
             print("the grid still not sorted")
-        return()
+        return(self.state==L)
 
         """
-        Checks is the current state of the grid is sorte and returns the answer as a boolean by comparing "self.state" to the grid sorted , created by a nested loop (descending columns and then descending rows)
+        Checks is the current state of the grid is sorte and returns the answer as a boolean comparing "self.state" to the grid sorted , created by a nested loop (descending columns and then descending rows)
 
         """
 
