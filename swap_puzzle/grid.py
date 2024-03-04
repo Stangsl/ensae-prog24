@@ -173,16 +173,28 @@ class Grid():
         return nodes
      #Returns a list of ints containing all nodes corresponding to all cells of the grid.
         
-    def get_neighbors(self, node):
+    def get_neighbors_cell(self, cell):
         neighbors = []
-        row, col = self.find(node)
+        row, col = cell[0],cell[1]
         directions = [(0, 1), (0, -1), (-1, 0), (1, 0)]  # Possible directions: right, left, up, down.
         for a,b in directions:
             new_row,new_col = row + a,col + b
             if 0 <= new_row < self.n and 0 <= new_col < self.m: #Makes sure assumed neighbor exists in the grid.
-                neighbors.append(self.state[new_row][new_col])
+                self.swap((row, col),(new_row,new_col))
+                neighbors.append(self.state)
+                self.swap((row, col),(new_row,new_col)) #Swap back
         return neighbors
-    #returns a list that corresponds to every neighbor of the node entered (node entered as an int and neighbors are , for the moment , returned as list of nodes as ints --> into dico? ).
+    #returns a list that corresponds to every neighbors of the cell entered (cell entered as a tuple and neighbors are , for the moment , returned in a list of "cell as tuples" --> into dico? ).
+    def get_neighbors(self):
+        L=[]
+        for i in range (self.n):
+            for j in range (self.m):
+                if i%2==0 and if j%2==0: #lignes paires
+                    L+= self.get_neighbors_cell(i,j)
+                if i%2==1 and if j%2==1:
+                    L+= self.get_neighbors_cell(i,j)
+        return(L)
+    #returns a list that corresponds to every neighbours of the node (edges between every nodes)
     #########################
     @classmethod
     def grid_from_file(cls, file_name): 
