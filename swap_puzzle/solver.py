@@ -10,14 +10,14 @@ class Solver():
         L=[]
         for i in range (grid.n*grid.m):
             a, b=grid.find(i)
-            if i%grid.m==0: #particular case if "i" needs to go all to the right
-                L+=grid.get_swap_droite(a,b,grid.m-b) #perform self.m-b swap to the right
-            if i%grid.m<b:   
-                L+=grid.get_swap_gauche(a,b,b-(i%grid.m)) #perform "position" - "rest" swaps to the left
-            if i%grid.m>b:
-                L+=grid.get_swap_droite(a,b,i%grid.m-b) #perform "rest" - "position" swaps to the right
-            if i//grid.n+1<a:
-                L+=grid.get_swap_haut(a,b,a-(i//grid.n+1)) #perform "position" - "i//grid.n+1" swaps to the top to achieve "i"'s positioning
+            if i%grid.n==0: #particular case if "i" needs to go all to the right
+                L+=grid.get_swap_droite(a,b,grid.n-b) #perform self.m-b swap to the right
+            if i%grid.n<b:   
+                L+=grid.get_swap_gauche(a,b,b-(i%grid.n)) #perform "position" - "rest" swaps to the left
+            if i%grid.n>b:
+                L+=grid.get_swap_droite(a,b,i%grid.n-b) #perform "rest" - "position" swaps to the right
+            if i//grid.m+1<a:
+                L+=grid.get_swap_haut(a,b,a-(i//grid.m+1)) #perform "position" - "i//grid.m+1" swaps to the top to achieve "i"'s positioning
         return(L)
             
                       
