@@ -155,8 +155,8 @@ class Grid():
     #########################Q4 , graphic representation of grids using numpy and matplotlib
     import matplotlib.pyplot as plt    
     def grid_show(self):
-        for i in range(self.n):
-            for j in range(self.m):
+        for i in range(self.m):
+            for j in range(self.n):
                 ax.text(j, i, str(self.state[i][j]), ha='center', va='center', color='black', fontsize=12)
     # Add numbers to each cell
         ax.axis('off')
@@ -165,13 +165,13 @@ class Grid():
         return()
     #########################
     #########################Q6 grids -> nodes
-    def get_nodes(self):
-        nodes = []
-        for i in range(self.n):
-            for j in range(self.m):
-                nodes += [self.state[i][j]]
-        return nodes
-     #Returns a list of ints containing all nodes corresponding to all cells of the grid.
+    def hash_grid(self):
+        s=()
+        for i in range self.m:
+            for j in range self.n:
+                s+=self.state[i][j]
+        return(hash(s))
+     #Returns a hashed tuple of ints corresponding to a node (considering a grid)
         
     def get_neighbors_cell(self, cell):
         neighbors = []
@@ -195,7 +195,7 @@ class Grid():
                     L+= self.get_neighbors_cell(i,j)
         return(L)
     #returns a list that corresponds to every neighbours of the node (edges between every nodes)
-    #########################
+    #########################             
     @classmethod
     def grid_from_file(cls, file_name): 
         """
