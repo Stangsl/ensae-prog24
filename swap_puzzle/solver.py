@@ -8,10 +8,13 @@ class Solver():
     @staticmethod
     def get_solution(grid):
         L=[]
-        for i in range (grid.n*grid.m):
-            a, b=grid.find(i)
+        for i in range (1,grid.n*grid.m+1):
+            a= grid.find(i)[0]
+            b= grid.find(i)[1]
+            a = int(a)
+            b = int(b)
             if i%grid.n==0: #particular case if "i" needs to go all to the right
-                L+=grid.get_swap_droite(a,b,grid.n-b) #perform self.m-b swap to the right
+                L+=grid.get_swap_droite(a,b,grid.n - b) #perform self.m-b swap to the right
             if i%grid.n<b:   
                 L+=grid.get_swap_gauche(a,b,b-(i%grid.n)) #perform "position" - "rest" swaps to the left
             if i%grid.n>b:

@@ -129,12 +129,12 @@ class Grid():
         a=0
         b=0
         while self.state[a][b] != p:
-            if b<self.m:
+            if b<self.n-1:
                 b+=1
             else :
                 b=0
                 a+=1
-            if a>self.n:
+            if a>self.m-1:
                 return(str(p),"not found in the grid")
         return(a,b)
 
@@ -167,8 +167,8 @@ class Grid():
     #########################Q6 grids -> nodes
     def hash_grid(self):
         s=()
-        for i in range self.m:
-            for j in range self.n:
+        for i in range (self.m):
+            for j in range (self.n):
                 s+=self.state[i][j]
         return(hash(s))
      #Returns a hashed tuple of ints corresponding to a node (considering a grid)
@@ -189,9 +189,9 @@ class Grid():
         L=[]
         for i in range (self.n):
             for j in range (self.m):
-                if i%2==0 and if j%2==0: #lignes paires
+                if i%2==0 and j%2==0: #lignes paires
                     L+= self.get_neighbors_cell(i,j)
-                if i%2==1 and if j%2==1:
+                if i%2==1 and j%2==1:
                     L+= self.get_neighbors_cell(i,j)
         return(L)
     #returns a list that corresponds to every neighbours of the node (edges between every nodes)
