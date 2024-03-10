@@ -4,7 +4,8 @@ This is the grid module. It contains the Grid class and its associated methods.
 import random
 import matplotlib.pyplot as plt
 from itertools import permutations
-from graph import Graph    
+from graph import Graph  
+import solver  
 
 class Grid():
     """
@@ -260,7 +261,32 @@ class Grid():
             L = grille.get_neighbors()
             for g in L:
                 graph.add_edge(grid.get_tuple_grid(),g.get_tuple_grid())
-        return graph
+        return graph        
+    
+    def A_etoile(self):
+        sol = tuple(range(1,grid.n*grid.m+1))
+        visite =[]
+        queue = [(0,self.get_tuple_grid())]
+        trouve = False
+        Parent= dict()
+        while queue != [] and not(trouve):
+            etat = heapq.heappop(Queue)[1]
+            if etat not in visite:
+                visite += etat
+                etats_futurs = self.get_neighbors()
+                for etat_futur in etats_futurs:
+                    if etat_futur not in Parent:
+                        Parent[etat_furut] = etat
+                    heapq.heappush(Queue, (len(solver.get_solution()), etat_futur))
+                if next_grid == Solution:
+                    Found = True
+        chemin = []
+        a = sol
+        while a!= self.get_tuple_grid():
+            N = Parent[N]
+            chemin += N
+        chemin.reverse()
+        return chemin
 
     @classmethod
     def grid_from_file(cls, file_name): 
