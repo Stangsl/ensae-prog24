@@ -28,5 +28,5 @@ class Solver():
         This method ALWAYS solves the grid (by using swap_seq to the sequence "L") and returns the sequence of swaps at the format 
         [((i1, j1), (i2, j2)), ((i1', j1'), (i2', j2')), ...] in a O((n*m)*(n+m)) TIME COMPLEXITY that we deduced implementig a "k" variable that becomes "k+=1" for every pass through the for loops ... This methods is of course not optimal.
         """
-        def get_solution_bfs(grid:Grid): #donne la solution lorsqu'on lui donne une grille en utilisant BFS
+        def get_solution_bfs(grid:Grid): #donne la solution la plus optimale lorsqu'on lui donne une grille en utilisant BFS
             return grid.grid_to_graph.bfs(g.get_tuple_grid(), Grid(g.m,g.n).get_tuple_grid())

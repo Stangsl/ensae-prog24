@@ -179,7 +179,7 @@ class Grid():
             for j in range (self.n):
                 s.append(self.state[i][j])
         return(tuple(s))
-     #Returns a hashed tuple of ints each corresponding to a node (considering a grid)
+     #Returns an unhashed tuple of ints corresponding to a node (considering a grid)
         
     def get_neighbors_cell(self, cell):
         neighbors = []
@@ -192,7 +192,7 @@ class Grid():
                 neighbors.append(self.state)
                 self.swap((row, col),(new_row,new_col)) #Swap back
         return neighbors
-    #returns a list that corresponds to every neighbors of the cell entered (cell entered as a tuple and neighbors are , for the moment , returned in a list of "cell as tuples" --> into dico? ).
+    #returns a list that contains all neighbors of the cell entered , used in get_neighbors
     
     def get_neighbors(self):
         L=[]
@@ -203,7 +203,7 @@ class Grid():
                 if i%2==1 and j%2==1:#lignes et colonnes impaires
                     L+= self.get_neighbors_cell(i,j)
         return L
-    #returns a list that corresponds to every neighbour of the node (edges between every nodes)
+    #returns a list that contains all neighbors of the node without repetitions (all edges possible considering a node)
     #########################
 
     def etats_possibles (self): #renvoie une liste d'états possibles chacun sous la forme de tuples de tuples
