@@ -237,7 +237,7 @@ class Grid():
         i=0
             while [list(range(i*self.n+1, (i+1)*self.n+1)) for i in range(self.m)] not in L: #on souhaite passer des noeuds aux suivants (atteignable en 1 seul swap) on regarde  que la grille rangée n'est pas apparue pour savoir combien d'edges il faudra considérer , cela évite d'avoir à créer l'ensemble des noeuds possibles dans la majortié des cas
                 for l in L:
-                L = [x for x in L if x != self.state] + get #enlever l'état de départ qui ne sert qu'à initier la boucle for
+                L = [x for x in L if x != self.state] + self.get_neighbors(l) #enlever l'état de départ qui ne sert qu'à initier la boucle for
                 L=list(set(L)) #supprimer les doublons inutiles
                 i+=1
         return i # renvoi le nombre d'edges minimal qu'il faudra faire pour pouvoir éxectuer bfs sur self.state
@@ -246,8 +246,8 @@ class Grid():
         L=[self.state]
             for k in range (self.nombres_etats_necessaires()):
                 for l in L:
-                        L=+ [self.get_neighbors(l)] # modifier liste de grilles
-                L = [x for x in L if x != [self.state]] + get #enlever l'état de départ qui ne sert qu'à initier la boucle for
+                        L=+ self.get_neighbors(l) # liste de grilles du réseau du départ à la destination
+                L = [x for x in L if x != self.state] #enlever l'état de départ qui ne sert qu'à initier la boucle for
         return([tuple(self.get_tuple_grid(z) for z in o) for o in L]) #renvoyer un tuple de "grid transformée tuples"
     
     def grid_to_graph_improved(self): #convertit en liste les tuples pour pouvoir trouver les voisins et ajouter les edges sans avoir considérés d'edges inutiles
