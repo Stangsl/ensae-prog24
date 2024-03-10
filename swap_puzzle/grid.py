@@ -247,7 +247,6 @@ class Grid():
             for k in range (self.nombres_etats_necessaires()):
                 for l in L:
                         L=+ self.get_neighbors(l) # liste de grilles du réseau du départ à la destination
-                L = [x for x in L if x != self.state] #enlever l'état de départ qui ne sert qu'à initier la boucle for
         return([tuple(self.get_tuple_grid(z) for z in o) for o in L]) #renvoyer un tuple de "grid transformée tuples"
     
     def grid_to_graph_improved(self): #convertit en liste les tuples pour pouvoir trouver les voisins et ajouter les edges sans avoir considérés d'edges inutiles
