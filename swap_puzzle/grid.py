@@ -1,8 +1,10 @@
 """
 This is the grid module. It contains the Grid class and its associated methods.
 """
-#TO DO : commande find , commandes swap haut , droite ...
 import random
+import matplotlib.pyplot as plt
+from itertools import permutations
+from graph import Graph    
 
 class Grid():
     """
@@ -153,7 +155,7 @@ class Grid():
             So the format should be [((i1, j1), (i2, j2)), ((i1', j1'), (i2', j2')), ...].
         """
     #########################Q4 , graphic representation of grids using numpy and matplotlib
-    import matplotlib.pyplot as plt    
+    
     def grid_show(self):
         for i in range(self.m):
             for j in range(self.n):
@@ -165,13 +167,19 @@ class Grid():
         return()
     #########################
     #########################Q6 grids -> nodes
-    def hash_grid(self):
-        s=()
+    @staticmethod
+    def perm(n): #renvoie une liste P composée de (n!) listes, chacune étant une permutation de 1,2,...,n 
+        L = [k for k in range(1,n+1)]
+        P = list(permutations(L))
+        return P
+
+    def get_tuple_grid(self):
+        s=[]
         for i in range (self.m):
             for j in range (self.n):
-                s+=self.state[i][j]
-        return(hash(s))
-     #Returns a hashed tuple of ints corresponding to a node (considering a grid)
+                s.append(self.state[i][j])
+        return(tuple(s))
+     #Returns a hashed tuple of ints each corresponding to a node (considering a grid)
         
     def get_neighbors_cell(self, cell):
         neighbors = []
@@ -185,17 +193,46 @@ class Grid():
                 self.swap((row, col),(new_row,new_col)) #Swap back
         return neighbors
     #returns a list that corresponds to every neighbors of the cell entered (cell entered as a tuple and neighbors are , for the moment , returned in a list of "cell as tuples" --> into dico? ).
+    
     def get_neighbors(self):
         L=[]
         for i in range (self.n):
             for j in range (self.m):
-                if i%2==0 and j%2==0: #lignes paires
+                if i%2==0 and j%2==0: #lignes et colonnes paires
                     L+= self.get_neighbors_cell(i,j)
-                if i%2==1 and j%2==1:
+                if i%2==1 and j%2==1:#lignes et colonnes impaires
                     L+= self.get_neighbors_cell(i,j)
-        return(L)
-    #returns a list that corresponds to every neighbours of the node (edges between every nodes)
-    #########################             
+        return L
+    #returns a list that corresponds to every neighbour of the node (edges between every nodes)
+    #########################
+
+    def etats_possibles (self): #renvoie une liste d'états possibles chacun sous la forme de tuples de tuples
+         etats = []
+         P = grid.perm(self.n*self.m)
+        for k in P:
+            grid = list(k)
+            etat = []
+            for i in range (1,self.m-1): #on différencie les lignes
+                etat.append(tuple(grid[(k-1)*self.n:k*self.n]))
+            etat = tuple(etat) #on transforme la liste de tuples en tuple de tuples
+            etats.append(etat)
+        return etats
+
+    def grid_to_graph(self): #convertit en liste les tuples pour pouvoir trouver les voisins et ajouter les edges
+        etats = self.etats_possibles()
+        graph = Graph(etats)
+        for etat in etats:
+            liste_etat = [] 
+            for i in range(len(etat)):
+                liste_etat.append([etat[i][j] for j in range(len(etat[i]))])
+            grille = Grid(self.m,self.n,liste_etat)
+            L = grille.get_neighbors()
+            for g in L:
+                graph.add_edge(grid.get_tuple_grid(),g.get_tuple_grid())
+        return graph
+
+
+             
     @classmethod
     def grid_from_file(cls, file_name): 
         """
