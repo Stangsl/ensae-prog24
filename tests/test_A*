@@ -7,10 +7,10 @@ from grid import Grid
 from solver import Solver
 from graph import Graph
 
-class Test_A_star(unittest.TestCase):
+class Test_A_etoile(unittest.TestCase):
     def test_grid1(self):
         grid = Grid.grid_from_file("input/grid1.in")
-        Grid.swap_seq(Solver.get_solution_A_star(grid))
+        Grid.swap_seq(Solver.get_solution_A_etoile(grid))
         self.assertEqual(grid.is_sorted(), True)
 
 if __name__ == '__main__':
